@@ -1,5 +1,8 @@
-const MAX_RUNNING_TIME = 300000; //スクリプト実行時間（ミリ秒）
-const REASONABLE_TIME_TO_WAIT = 300000; //トリガー実行までの時間（ミリ秒）
+/** スクリプト実行時間（ミリ秒） */
+const MAX_RUNNING_TIME = 300000;
+/** トリガー実行までの時間（ミリ秒） */
+const REASONABLE_TIME_TO_WAIT = 300000;
+/** トリガーに登録する関数 */
 const EXECUTION_FUNCTION = 'onContinueFunction';
 
 /** 実行開始時間 */
@@ -19,7 +22,7 @@ function onFunction() {
   }
 }
 
-/** 自動実行用 */
+/** トリガーに登録する関数 */
 function onContinueFunction() {
   deleteTrigger();
   onFunction();
@@ -62,7 +65,7 @@ function isExecutionOvertime() {
   return currTime - _startTime >= MAX_RUNNING_TIME;
 }
 
-/**トリガーを登録 */
+/** トリガーを登録 */
 function setTrigger() {
   var currTime = getTime();
   ScriptApp.newTrigger(EXECUTION_FUNCTION).timeBased().at(new Date(currTime + REASONABLE_TIME_TO_WAIT)).create();
